@@ -1,0 +1,14 @@
+<div class="container size">
+    <h4>Hello {{ name }}</h4>
+    <button class="btn btn-info" (click) = "Me(name)">Welcome</button>
+    <!-- ngFor directive -->
+    <ul *ngFor="let OneName of ListName">
+        <li>
+            {{OneName}}
+        </li>
+    </ul>
+    <!-- ngIf directive -->
+    <p *ngIf="ListName.length == 0" class="alert alert-warning">
+      no name found !
+    </p>
+</div>

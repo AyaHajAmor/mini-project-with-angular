@@ -1,10 +1,31 @@
 <app-navbar></app-navbar>
 <main class="container size">
-    <div class="bg-light p-5 rounded">
-      <h1>Navbar example</h1>
-      <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
-      <a class="btn btn-lg btn-primary" href="/docs/5.0/components/navbar/" role="button">View navbar docs &raquo;</a>
-    </div>
+  <button type="button" class="btn btn-primary m-5">Add user <i class='fas fa-plus'></i></button>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersList">
+        
+        <th scope="row">{{ user['id'] }}</th>
+        <td>{{ user['name'] }}</td>
+        <td>{{ user['email'] }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary"><i class='fas fa-pen' ></i></button>
+          <button type="button" class="btn btn-outline-danger mx-3"><i class='fas fa-trash-alt' ></i></button>
+          <button type="button" class="btn btn-outline-warning"><i class='fas fa-eye' ></i></button>
+
+        </td>
+        
+      </tr>
+    </tbody>
+    </table>
   </main>
   
   

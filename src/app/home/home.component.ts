@@ -7,7 +7,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  usersList =[];
+  usersList : any[] = [];
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
@@ -19,6 +19,18 @@ export class HomeComponent implements OnInit {
       error => {
         console.log(error);
         
+      }
+    )
+  };
+  delete(user : any) {
+    let index = this.usersList.indexOf(user);
+    this.usersList.splice(index, 1);
+    this.userService.deleteUser(user._id).subscribe(
+      result =>{
+        console.log(result)
+      },
+      error=> {
+        console.log(error);
       }
     )
   }

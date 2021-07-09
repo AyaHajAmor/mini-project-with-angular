@@ -4,10 +4,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+  getListURl = "https://backend-people-crud-app.herokuapp.com/users";
+  deleteListURl = "https://backend-people-crud-app.herokuapp.com/users/";
 
   constructor( private http:HttpClient) { }
+
   getAllUsers(){
-    let data = this.http.get<any>("https://jsonplaceholder.typicode.com/users")
-    return data ;
+    return this.http.get<any>(this.getListURl);
+  }
+  
+  deleteUser(id : String){
+    return this.http.delete<any>(this.deleteListURl+id);
   }
 }

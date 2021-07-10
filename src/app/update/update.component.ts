@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder , Validators} from '@angular/forms';
 @Component({
-  selector: 'app-new',
-  templateUrl: './new.component.html',
-  styleUrls: ['./new.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class NewComponent implements OnInit {
+export class UpdateComponent implements OnInit {
   myForm: FormGroup
 
   constructor(private fb: FormBuilder) {
@@ -23,7 +23,7 @@ export class NewComponent implements OnInit {
       ]),
       email : new FormControl('',[
         Validators.required,
-        Validators.email,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
       ]),
       phone : new FormControl('',[
         Validators.required,
@@ -52,7 +52,7 @@ export class NewComponent implements OnInit {
 
   }
 
-  saveUser(){
+  updateUser(){
     console.log(this.myForm.value);
   }
 

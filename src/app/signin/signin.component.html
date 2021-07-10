@@ -1,24 +1,59 @@
 <app-navbar></app-navbar>
-<div class="container size ">
-    <h1 class="text-center">SignIn</h1>
-    <form class="col-md-8 offset-md-2">
-        <div class="mb-3">
-            <label for="exampleInputName" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="exampleInputName" >
+
+<div class="container size">
+  <h1 class="text-center">SignIn</h1>
+  <form class="col-md-10 offset-md-1" [formGroup]="myForm" (ngSubmit)="signIn()">
+        <div class="mb-3 form-row row">
+          <div class="form-group mt-1 col-12">
+            <label for="fname" class="form-label">FullName</label>
+            <input class="form-control my-3" type="text" name="fname" id="fname" formControlName="fname">
+            <div *ngIf="fname?.touched && fname?.invalid">
+              <small *ngIf="fname?.errors?.required" class="text-danger">FullName is required<br></small>
+              <small *ngIf="fname?.errors?.minlength" class="text-danger">Password must contain 3 characters at least<br></small>
+            </div>
           </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <div class="form-group mt-1 col-6">
+            <label for="email" class="form-label">Email address</label>
+            <input class="form-control my-3" type="email" name="email" id="email" formControlName="email">
+            <div *ngIf="email?.touched && email?.invalid">
+              <small *ngIf="email?.errors?.required" class="text-danger">Email is required<br></small>
+              <small *ngIf="email?.errors?.email" class="text-danger">Invalid Email<br></small>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+        <div class="form-group mt-1 col-6">
+          <label for="phone" class="form-label">Phone</label>
+          <input class="form-control my-3" type="number" name="phone" id="phone" formControlName="phone">
+          <div *ngIf="phone?.touched && phone?.invalid">
+            <small *ngIf="phone?.errors?.required" class="text-danger">Phone is required<br></small>
+            <small *ngIf="phone?.errors?.minlength" class="text-danger">Invalid Phone<br></small>
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <div class="mb-3 form-group mt-1 col-6">
+        <label for="password" class="form-label">Password</label>
+        <input class="form-control my-3" type="password" name="password" id="password" formControlName="password">
+        <div *ngIf="password?.touched && password?.invalid">
+          <small *ngIf="password?.errors?.required" class="text-danger">Password is required<br></small>
+          <small *ngIf="password?.errors?.minlength" class="text-danger">Password must contain six characters at least<br></small>
         </div>
-        <button type="submit" class="btn btn-primary">SignIn</button>
+      </div>
+      <div class="mb-3 form-group mt-1 col-6">
+        <label for="repeatpassword" class="form-label"> Confirm Password</label>
+        <input class="form-control my-3" type="password" name="repeatpassword" id="repeatpassword" formControlName="repeatpassword">
+        <div *ngIf="repeatpassword?.touched && repeatpassword?.invalid">
+          <small *ngIf="repeatpassword?.errors?.required" class="text-danger">Password is required<br></small>
+          <small *ngIf="repeatpassword?.errors?.minlength" class="text-danger">Password must contain six characters at least<br></small>
+        </div>
+        <div *ngIf="repeatpassword?.valid && repeatpassword?.value != password?.value" class="text-danger">
+          The passwords entered do not match
+      </div>
+      </div>
+        </div>
+          
+        <div class="form-row">
+          <div class="form-group col">
+              <input type="submit" value="SignIn" [disabled]="myForm.invalid " class="btn btn-info">
+          </div>
+      </div>
       </form>
+      <h6 class="text-info text-center " [routerLink]="['/connection']">Create an account.</h6>
 </div>

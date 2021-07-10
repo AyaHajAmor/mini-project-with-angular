@@ -1,15 +1,14 @@
 <app-navbar></app-navbar>
-<app-navbar></app-navbar>
 
 <div class="container size">
     <div class="row">
         <div class="col">
             <button class="btn btn-info my-3" [routerLink]="['/']"><i class='fas fa-arrow-left'></i> Back</button>
             <hr>
-            <h1 class="my-3">Add User</h1>
+            <h1 class="my-3">Update User</h1>
         </div>
     </div>
-    <form [formGroup]="myForm" (ngSubmit)="saveUser()">
+    <form [formGroup]="myForm" (ngSubmit)="updateUser()">
         <div class="form-row row">
             <div class="form-group col-6 mt-3">
                 <label for="firstname ">FirstName :</label>
@@ -36,7 +35,7 @@
                 <input class="form-control my-3" type="email" name="email" id="email" formControlName="email">
                 <div *ngIf="email?.touched && email?.invalid">
                     <small *ngIf="email?.errors?.required" class="text-danger">Email is required<br></small>
-                    <small *ngIf="email?.errors?.email" class="text-danger">Invalid Email<br></small>
+                    <small *ngIf="email?.errors?.pattern" class="text-danger">Invalid Email<br></small>
                 </div>
             </div>
         </div>
@@ -46,13 +45,13 @@
                 <input class="form-control my-3" type="number" name="phone" id="phone" formControlName="phone">
                 <div *ngIf="phone?.touched && phone?.invalid">
                     <small *ngIf="phone?.errors?.required" class="text-danger">Phone is required<br></small>
-                    <small *ngIf="phone?.errors?.minlength" class="text-danger">Invalid Phone<br></small>
+                    <small *ngIf="phone?.errors?.minlength" class="text-danger">Phone must contain 8 characters at least<br></small>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col">
-                <input type="submit" value="Save User" [disabled]="myForm.invalid" class="btn btn-info">
+                <input type="submit" value="Update User" [disabled]="myForm.invalid" class="btn btn-warning">
             </div>
         </div>
     </form>

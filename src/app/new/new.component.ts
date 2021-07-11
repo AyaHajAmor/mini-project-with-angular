@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder , Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { User } from '../user';
+import { UserService } from '../user.service';
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
@@ -8,17 +12,15 @@ import { FormGroup, FormControl,FormBuilder , Validators} from '@angular/forms';
 export class NewComponent implements OnInit {
   myForm: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder ,private userService:UserService ,private router:Router  ,private toastr: ToastrService) {
 
     let formControls = {
       firstname : new FormControl('',[
         Validators.required,
-        Validators.pattern("[a-z .'-]+"),
         Validators.minLength(2)
       ]),
       lastname : new FormControl('',[
         Validators.required,
-        Validators.pattern("[a-z .'-]+"),
         Validators.minLength(2)
       ]),
       email : new FormControl('',[
@@ -53,7 +55,19 @@ export class NewComponent implements OnInit {
   }
 
   saveUser(){
-    console.log(this.myForm.value);
+    let data= this.myForm.value;
+    let user = new User(data.firstname,data.lastname,'',data.email,data.phone,'');
+    this.userService.addUser(user).subscribe(
+      result=>{
+        console.log(result);
+          this.toastr.info('User Aded!', 'Successfully!');
+        this.router.navigate(['/'])
+      },
+      error=>{
+        console.log(error);
+        
+      }
+    );
   }
 
 

@@ -27,7 +27,7 @@ const routes: Routes = [
       component: NewComponent,
       },
       {
-        path: 'update-user',
+        path: 'update-user/:id',
         component: UpdateComponent,
         },
       {
@@ -39,7 +39,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
   exports: [
   RouterModule

@@ -12,17 +12,16 @@
               <small *ngIf="email?.errors?.email" class="text-danger">Invalid Email<br></small>
           </div>
         </div>
+        <div class="mb-3 form-group">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input class="form-control my-3" type="password" name="password" id="password" formControlName="password">
+        <div *ngIf="password?.touched && password?.invalid">
+          <small *ngIf="password?.errors?.required" class="text-danger">password is required<br></small>
+          <small *ngIf="password?.errors?.minlength" class="text-danger">LastName must contain six characters at least<br></small>
         </div>
-        <div class="mb-3 form-row">
-          <div class="mb-3 form-row">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input class="form-control my-3" type="password" name="password" id="password" formControlName="password">
-          </div>
-          <div *ngIf="password?.touched && password?.invalid">
-            <small *ngIf="password?.errors?.required" class="text-danger">password is required<br></small>
-            <small *ngIf="password?.errors?.minlength" class="text-danger">LastName must contain six characters at least<br></small>
+      </div>
         </div>
-        </div>
+        
         <div class="form-row">
           <div class="form-group col">
               <input type="submit" value="LogIn" [disabled]="myForm.invalid" class="btn btn-info">

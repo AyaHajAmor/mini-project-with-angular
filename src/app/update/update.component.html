@@ -9,50 +9,45 @@
         </div>
     </div>
     <form [formGroup]="myForm" (ngSubmit)="updateUser()">
-        <div class="form-row row">
-            <div class="form-group col-6 mt-3">
-                <label for="firstname ">FirstName :</label>
-                <input class="form-control my-3" type="text" name="firstname" id="firstname" formControlName="firstname">
-                <div *ngIf="firstname?.touched && firstname?.invalid">
-                    <small *ngIf="firstname?.errors?.required " class="text-danger">Firstname is required<br></small>
-                    <small *ngIf="firstname?.errors?.pattern " class="text-danger">Invalid Firstname<br></small>
-                    <small *ngIf="firstname?.errors?.minlength" class="text-danger">Firstname must contain two characters at least</small>
-                </div>
+        <div class="mb-3 form-row row">
+            <div class="form-group mt-1 col-6">
+              <label for="firstname" class="form-label">FirstName</label>
+              <input class="form-control my-3" type="text" name="firstname" id="firstname" formControlName="firstname">
+              <div *ngIf="firstname?.touched && firstname?.invalid">
+                <small *ngIf="firstname?.errors?.required" class="text-danger">FirstName is required<br></small>
+                <small *ngIf="firstname?.errors?.minlength" class="text-danger">FirstName must contain 3 characters at least<br></small>
+              </div>
             </div>
-            <div class="form-group col-6 mt-3">
-                <label for="lastname ">LastName :</label>
+            <div class="form-group mt-1 col-6">
+                <label for="lastname" class="form-label">LastName</label>
                 <input class="form-control my-3" type="text" name="lastname" id="lastname" formControlName="lastname">
                 <div *ngIf="lastname?.touched && lastname?.invalid">
-                    <small *ngIf="lastname?.errors?.required" class="text-danger">LastName is required<br></small>
-                    <small *ngIf="lastname?.errors?.pattern" class="text-danger">Invalid LastName<br></small>
-                    <small *ngIf="lastname?.errors?.minlength" class="text-danger">LastName must contain two characters at least</small>
+                  <small *ngIf="lastname?.errors?.required" class="text-danger">FullName is required<br></small>
+                  <small *ngIf="lastname?.errors?.minlength" class="text-danger">Password must contain 3 characters at least<br></small>
                 </div>
+              </div>
+            <div class="form-group mt-1 col-6">
+              <label for="email" class="form-label">Email address</label>
+              <input class="form-control my-3" type="email" name="email" id="email" formControlName="email">
+              <div *ngIf="email?.touched && email?.invalid">
+                <small *ngIf="email?.errors?.required" class="text-danger">Email is required<br></small>
+                <small *ngIf="email?.errors?.email" class="text-danger">Invalid Email<br></small>
+              </div>
             </div>
+          <div class="form-group mt-1 col-6">
+            <label for="phone" class="form-label">Phone</label>
+            <input class="form-control my-3" type="number" name="phone" id="phone" formControlName="phone">
+            <div *ngIf="phone?.touched && phone?.invalid">
+              <small *ngIf="phone?.errors?.required" class="text-danger">Phone is required<br></small>
+              <small *ngIf="phone?.errors?.minlength" class="text-danger">Invalid Phone<br></small>
+          </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col mt-3">
-                <label for="email ">Email :</label>
-                <input class="form-control my-3" type="email" name="email" id="email" formControlName="email">
-                <div *ngIf="email?.touched && email?.invalid">
-                    <small *ngIf="email?.errors?.required" class="text-danger">Email is required<br></small>
-                    <small *ngIf="email?.errors?.pattern" class="text-danger">Invalid Email<br></small>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-6 mt-3">
-                <label for="phone">Phone :</label>
-                <input class="form-control my-3" type="number" name="phone" id="phone" formControlName="phone">
-                <div *ngIf="phone?.touched && phone?.invalid">
-                    <small *ngIf="phone?.errors?.required" class="text-danger">Phone is required<br></small>
-                    <small *ngIf="phone?.errors?.minlength" class="text-danger">Phone must contain 8 characters at least<br></small>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
+          </div>
+            
+          <div class="form-row">
             <div class="form-group col">
-                <input type="submit" value="Update User" [disabled]="myForm.invalid" class="btn btn-warning">
+                <input type="submit" value="Update User" [disabled]="myForm.invalid " class="btn btn-warning">
             </div>
         </div>
-    </form>
+        </form>
 </div>

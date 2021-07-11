@@ -12,6 +12,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NewComponent } from './new/new.component';
 import { Page404Component } from './page404/page404.component';
 import { UpdateComponent } from './update/update.component';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -29,9 +31,11 @@ import { UpdateComponent } from './update/update.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastNoAnimationModule.forRoot(),
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

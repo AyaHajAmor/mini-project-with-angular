@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
 <main class="container size">
-  <button type="button" class="btn btn-primary m-5" [routerLink]="['/new-user']">Add user <i class='fas fa-plus'></i></button>
+  <button type="button" class="btn btn-info m-5" [routerLink]="['/new-user']">Add user <i class='fas fa-plus'></i></button>
     <table class="table table-hover">
       <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -14,11 +14,11 @@
       <tr *ngFor="let user of usersList; let i = index">
         <th scope="row">{{ i +1  }}</th>
         <td>{{ user['firstname'] +' ' +user['lastname']  }}</td>
-        <td>{{ user['email'] }}</td>
+        <td>{{ user['phone'] }}</td>
         <td>
-          <button type="button" class="btn btn-outline-primary" [routerLink]="['/update-user']"><i class='fas fa-pen' ></i></button>
+          <button type="button" class="btn btn-outline-warning" [routerLink]="['/update-user',user['_id']]"><i class='fas fa-pen' ></i></button>
           <button type="button" class="btn btn-outline-danger mx-3" (click)="delete(user)"><i class='fas fa-trash-alt' ></i></button>
-          <button type="button" class="btn btn-outline-warning"><i class='fas fa-eye' ></i></button>
+          <button type="button" class="btn btn-outline-info"><i class='fas fa-eye' ></i></button>
 
         </td>
         

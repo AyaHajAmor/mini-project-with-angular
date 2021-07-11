@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder , Validators} from '@angular/forms';
+import { User } from '../user';
 
 @Component({
   selector: 'app-signin',
@@ -61,8 +62,10 @@ export class SigninComponent implements OnInit {
   }
 
   signIn(){
-    console.log(this.myForm.value);
+    let data= this.myForm.value;
+    let user = new User('','',data.fname,data.email,data.phone,data.password);
+    console.log(user);
   }
 
-
+  
 }

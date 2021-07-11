@@ -10,6 +10,8 @@ export class UserService {
   private updateUserURL = "https://backend-people-crud-app.herokuapp.com/users/update";
   private deleteUserURl = "https://backend-people-crud-app.herokuapp.com/users/";
   private postUserURl = "https://backend-people-crud-app.herokuapp.com/users/add";
+  private signInURl = "https://backend-people-crud-app.herokuapp.com/users/register";
+  private loginURl = "https://backend-people-crud-app.herokuapp.com/users/login";
 
   constructor( private http:HttpClient) { }
 
@@ -27,8 +29,22 @@ export class UserService {
   }
   updateUser(user : User){
     let userUpdated = this.http.put<any>(this.updateUserURL, user);
-    console.log(userUpdated);
-    
     return userUpdated;
+  }
+  signIn(user : User){
+    return this.http.post<any>(this.signInURl , user);
+  }
+  logIn(user : User){
+    return this.http.post<any>(this.loginURl , user);
+  }
+  isLoggedIn(){
+
+    let token = localStorage.getItem("myToken");
+
+    if (token) {
+      return true ;
+    } else {
+      return false;
+    }
   }
 }

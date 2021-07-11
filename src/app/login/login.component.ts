@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder , Validators} from '@angular/forms';
 import { User } from '../user';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +13,7 @@ import { User } from '../user';
 export class LoginComponent implements OnInit {
   myForm: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private userService:UserService ,private router:Router  ,private toastr: ToastrService) {
 
     let formControls = {
       email : new FormControl('',[
@@ -36,12 +39,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+    let isLoggedIn = this.userService.isLoggedIn();
+
+    if (isLoggedIn) {
+      this.router.navigate(['/']);
+    } 
   }
 
   logIn(){
     let data= this.myForm.value;
     let user = new User('','','',data.email,'',data.password);
-    console.log(user);
+    this.userService.logIn(user).subscribe(
+      result =>{
+        let token = result.token;
+        localStorage.setItem("myToken",token);
+        this.toastr.success('', 'Welcome !');
+        this.router.navigate(['/'])
+      },
+      error =>{
+        console.log(error);
+      }
+    ) ;
   }
+  
 
 }

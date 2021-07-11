@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder , Validators} from '@angular/forms';
 import { User } from '../user';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -10,7 +13,7 @@ import { User } from '../user';
 export class SigninComponent implements OnInit {
   myForm: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private userService:UserService ,private router:Router  ,private toastr: ToastrService) {
 
     let formControls = {
       fname : new FormControl('',[
@@ -59,12 +62,25 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
 
+    let isLoggedIn = this.userService.isLoggedIn();
+
+    if (isLoggedIn) {
+      this.router.navigate(['/']);
+    } 
   }
 
   signIn(){
     let data= this.myForm.value;
     let user = new User('','',data.fname,data.email,data.phone,data.password);
-    console.log(user);
+    this.userService.signIn(user).subscribe(
+      result=>{
+        this.toastr.info('', 'Successfully!');
+        this.router.navigate(['/connection'])
+      },
+      error=>{
+        console.log(error);
+      }
+    ) ;
   }
 
   

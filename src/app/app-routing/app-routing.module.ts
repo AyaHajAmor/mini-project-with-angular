@@ -7,12 +7,14 @@ import {SigninComponent} from '../signin/signin.component';
 import { NewComponent } from '../new/new.component';
 import { Page404Component } from '../page404/page404.component';
 import { UpdateComponent } from '../update/update.component';
+import { AuthGuard } from '../auth.guard';
 
 
 const routes: Routes = [
   {
   path: '',
   component: HomeComponent,
+  canActivate:[AuthGuard]
   },
   {
   path: 'connection',
@@ -25,10 +27,12 @@ const routes: Routes = [
     {
       path: 'new-user',
       component: NewComponent,
+      canActivate:[AuthGuard]
       },
       {
         path: 'update-user/:id',
         component: UpdateComponent,
+        canActivate:[AuthGuard]
         },
       {
         path: '**',

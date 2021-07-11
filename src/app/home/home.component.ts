@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.usersList.splice(index, 1);
     this.userService.deleteUser(user._id).subscribe(
       result =>{
-        this.toastr.error('User Deleted !', 'Successfully!');
+        this.toastr.error('User Deleted!', 'Success!');
         console.log(result)
       },
       error=> {

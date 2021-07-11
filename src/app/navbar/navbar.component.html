@@ -11,9 +11,9 @@
           </li>
         </ul>
         <form class="d-flex ml-auto">
-          <button *ngIf="!isLoggedIn" class="btn btn-info " [routerLink]="['/connection']">Connecter</button>
-          <button *ngIf="!isLoggedIn" class="btn btn-outline-info mx-3" [routerLink]="['/inscription']">Inscription</button>
-          <button *ngIf="isLoggedIn" class="btn btn-outline-light mx-3" (click)="logout()">Deconnexion</button>
+          <button *ngIf="!isLoggedIn" class="btn btn-info " [routerLink]="['/connection']">LogIn</button>
+          <button *ngIf="!isLoggedIn" class="btn btn-outline-info mx-3" [routerLink]="['/inscription']">SignIn</button>
+          <button *ngIf="isLoggedIn" class="btn btn-outline-light mx-3" (click)="logout()">Logout</button>
         </form>
       </div>
     </div>
